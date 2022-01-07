@@ -16,7 +16,7 @@ RUN Invoke-Webrequest -OutFile rewrite.msi -Uri https://download.microsoft.com/d
 RUN Start-Process -FilePath 'C:\\windows\\system32\\msiexec' -ArgumentList '/i','rewrite.msi','/qn','/norestart' -Wait 
 
 # Copy our legacy webapp into the container
-COPY .\\app\\LegacyWebApp\\bin\\app.publish C:\\inetpub\\wwwroot\\
+COPY .\\LegacyWebApp\\bin\\app.publish C:\\inetpub\\wwwroot\\
 
 # Expose your web ports (HTTP/HTTPS)
 EXPOSE 80
