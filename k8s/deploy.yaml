@@ -21,10 +21,6 @@ spec:
         - containerPort: 80
       nodeSelector:
         kubernetes.io/os: windows
-      tolerations:
-        - key: kubernetes.azure.com/scalesetpriority
-          operator: Exists
-          effect: NoSchedule
 ---
 apiVersion: v1
 kind: Service

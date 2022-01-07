@@ -13,10 +13,10 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 RUN Invoke-Webrequest -OutFile rewrite.msi -Uri https://download.microsoft.com/download/1/2/8/128E2E22-C1B9-44A4-BE2A-5859ED1D4592/rewrite_amd64_en-US.msi
 
 # Install dependencies, in some (many) cases you will need to explicitly wait for the installer to complete
-RUN Start-Process -FilePath 'C:\\windows\\system32\\msiexec' -ArgumentList '/i','rewrite.msi','/qn','/norestart' -Wait 
+RUN Start-Process -FilePath 'C:\windows\system32\msiexec' -ArgumentList '/i','rewrite.msi','/qn','/norestart' -Wait 
 
 # Copy our legacy webapp into the container
-COPY .\\LegacyWebApp\\bin\\app.publish C:\\inetpub\\wwwroot\\
+COPY .\LegacyWebApp\bin\app.publish C:\inetpub\wwwroot\
 
 # Expose your web ports (HTTP/HTTPS)
 EXPOSE 80
