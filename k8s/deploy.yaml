@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myiisapp
+  labels:
+    app: myiisapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myiisapp
+  template:
+    metadata:
+      labels:
+        app: myiisapp
+    spec:
+      containers:
+      - name: aspnet
+        image: mjgcontainers.azurecr.io/myiisapp:latest
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        kubernetes.io/os: windows
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myiisapp-svc
+spec:
+  selector:
+    app: myiisapp
+  ports:
+    - port: 80
+  type: LoadBalancer
